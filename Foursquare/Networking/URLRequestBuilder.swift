@@ -43,7 +43,7 @@ extension URLRequestBuilder {
     }
     
     var mainURL: URL {
-        /*Forced Typecast is safe here because your baseURL must be valid or the app will crash
+        /*Forced Typecast is safe here because your baseURL must be valid or the app will crash with the First API Request
          and navigate to this line of code before even launch
          */
         return URL(string: baseURL)!

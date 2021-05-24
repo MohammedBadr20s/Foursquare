@@ -47,17 +47,7 @@ class FourSquareViewModel: BaseViewModel, ViewModelType {
                 if items.count == 0 {
                     self.itemsWithPhotos = []
                 }
-                items.forEach { (item) in
-                    var itemWithPhoto = item
-                    
-                    self.getVenuePhoto(venueId: itemWithPhoto.venue?.id ?? "") { (photoLink: String?, error: ErrorModel?) in
-                        if let photo = photoLink {
-                            itemWithPhoto.venue?.photos?.items = [PhotoItem(fullLink: photo)]
-                            self.itemsWithPhotos.append(itemWithPhoto)
-                        }  
-                    }
-                    
-                }
+                self.getNearbyPlacesPhoto(items: items)
             } else {
                 self.itemsWithPhotos = []
             }
@@ -71,6 +61,19 @@ class FourSquareViewModel: BaseViewModel, ViewModelType {
         }.disposed(by: self.disposeBag)
     }
     
+    func getNearbyPlacesPhoto(items: [GroupItem]) {
+        items.forEach { (item) in
+            var itemWithPhoto = item
+            
+            self.getVenuePhoto(venueId: itemWithPhoto.venue?.id ?? "") { (photoLink: String?, error: ErrorModel?) in
+                if let photo = photoLink {
+                    itemWithPhoto.venue?.photos?.items = [PhotoItem(fullLink: photo)]
+                    self.itemsWithPhotos.append(itemWithPhoto)
+                }
+            }
+            
+        }
+    }
     //MARK:- Getting Venue Photo and while making sure that no two elements are emitted in less than dueTime.
     func getVenuePhoto(venueId: String, completion: @escaping (_ photoLink: String?,_ error: ErrorModel?) -> Void) {
         FourSquareRouter.getPhotos(venueId).Request(model: PhotosModel.self).throttle(.seconds(2), scheduler: MainScheduler.instance).subscribe { (photoModel: PhotosModel) in
