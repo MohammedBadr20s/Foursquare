@@ -44,7 +44,9 @@ class FourSquareViewModel: BaseViewModel, ViewModelType {
         FourSquareRouter.exploreNearbyPlace(lat, long, radius).Request(model: ExploreModel.self).subscribe { (exploreModel: ExploreModel) in
             print("Number of Groups: \(exploreModel.response?.groups?.count ?? 0)")
             if let items = exploreModel.response?.groups?.first?.items {
-                
+                if items.count == 0 {
+                    self.itemsWithPhotos = []
+                }
                 items.forEach { (item) in
                     var itemWithPhoto = item
                     
@@ -56,6 +58,8 @@ class FourSquareViewModel: BaseViewModel, ViewModelType {
                     }
                     
                 }
+            } else {
+                self.itemsWithPhotos = []
             }
         } onError: { (error: Error) in
             let err = error as? ErrorModel ?? ErrorModel(meta: Meta(code: 0, errorType: "", errorDetail: error.localizedDescription, requestID: ""))
