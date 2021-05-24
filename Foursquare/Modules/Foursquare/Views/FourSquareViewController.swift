@@ -18,6 +18,7 @@ class FourSquareViewController: BaseViewController {
     var currentLocation: CLLocationCoordinate2D? {
         didSet {
             self.viewModel.getNearbyPlaces(lat: currentLocation?.latitude ?? 0, long: currentLocation?.longitude ?? 0, radius: 1000)
+            self.tableView.showStateView(show: true, state: .loading, msg: "Loading...")
 
         }
     }
@@ -33,7 +34,17 @@ class FourSquareViewController: BaseViewController {
         self.addRealTimeButton(Selector: #selector(realTimeAction))
         setupTableView()
         self.locationManager = LocationManager(locationManager: CLLocationManager(), coreLocationDelegate: self, viewController: self)
-        
+        self.viewModel.output.nearbyPlaces.bind { (items: [GroupItem]) in
+            
+            if items.count == 0 {
+                self.tableView.showStateView(show: true, state: .noData, msg: "No data found !!")
+            } else {
+                self.tableView.showStateView(show: false)
+            }
+        }.disposed(by: self.viewModel.disposeBag)
+        self.viewModel.failure.bind { (error: ErrorModel) in
+            self.tableView.showStateView(show: true, state: .error, msg: "Something went wrong !! \n\(error.meta?.errorDetail ?? "")")
+        }.disposed(by: self.viewModel.disposeBag)
     }
 
     @objc func realTimeAction() {
@@ -76,6 +87,8 @@ class FourSquareViewController: BaseViewController {
 //        }
         return cell
     }
+    
+    
 }
 
 

@@ -63,8 +63,8 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Please Allow Access to locations so you can specify a location</string>
+	<string>Please Allow Access to locations to show you Nearby Places</string>
 	<key>NSLocationUsageDescription</key>
-	<string>Please Allow Access to locations so you can specify a location</string>
+	<string>Please Allow Access to locations to show you Nearby Places</string>
 </dict>
 </plist>

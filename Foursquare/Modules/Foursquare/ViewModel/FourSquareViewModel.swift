@@ -38,10 +38,13 @@ class FourSquareViewModel: BaseViewModel, ViewModelType {
     }
     
     func getNearbyPlaces(lat: Double, long: Double, radius: Int = 1000) {
+        if self.itemsWithPhotos.count != 0 {
+            self.itemsWithPhotos = []
+        }
         FourSquareRouter.exploreNearbyPlace(lat, long, radius).Request(model: ExploreModel.self).subscribe { (exploreModel: ExploreModel) in
             print("Number of Groups: \(exploreModel.response?.groups?.count)")
             if let items = exploreModel.response?.groups?.first?.items {
-                self.itemsWithPhotos = []
+                
                 items.forEach { (item) in
                     var itemWithPhoto = item
                     self.getVenuePhoto(venueId: itemWithPhoto.venue?.id ?? "") { (photoLink: String?) in

@@ -52,7 +52,7 @@ class LocationManager {
      */
     private func showOpenSettingsAlerts(viewController: UIViewController) {
         // if Disabled location features
-        let alert = UIAlertController(title: "Allow Location Access", message: "Smart Note Pad needs access to show your location. Turn on Location Services in your device settings.", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Allow Location Access", message: "FourSquare needs access to show you Nearby Places. Turn on Location Services in your device settings.", preferredStyle: UIAlertController.Style.alert)
         
         // Button to Open Settings
         alert.addAction(UIAlertAction(title: "Settings", style: UIAlertAction.Style.default, handler: { action in

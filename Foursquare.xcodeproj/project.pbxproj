@@ -46,6 +46,9 @@
 		E5C9225E265B3AF300411092 /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C9225D265B3AF300411092 /* PhotosModel.swift */; };
 		E5C92272265B4B9C00411092 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C92271265B4B9C00411092 /* LocationManager.swift */; };
 		E5C92277265B4F3500411092 /* UIDouble+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C92276265B4F3500411092 /* UIDouble+Extension.swift */; };
+		E5C9228B265B56B800411092 /* StateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C9228A265B56B800411092 /* StateView.swift */; };
+		E5C92290265B56C300411092 /* StateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E5C9228F265B56C300411092 /* StateView.xib */; };
+		E5C92296265B5DD700411092 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C92295265B5DD700411092 /* UITableView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +119,9 @@
 		E5C9225D265B3AF300411092 /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
 		E5C92271265B4B9C00411092 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E5C92276265B4F3500411092 /* UIDouble+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDouble+Extension.swift"; sourceTree = "<group>"; };
+		E5C9228A265B56B800411092 /* StateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateView.swift; sourceTree = "<group>"; };
+		E5C9228F265B56C300411092 /* StateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StateView.xib; sourceTree = "<group>"; };
+		E5C92295265B5DD700411092 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		ED13A4CA8525567587C1FED5 /* Pods-Foursquare-FoursquareUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Foursquare-FoursquareUITests.debug.xcconfig"; path = "Target Support Files/Pods-Foursquare-FoursquareUITests/Pods-Foursquare-FoursquareUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -376,6 +382,7 @@
 				E5C921E8265B1EB100411092 /* UIColor+Extension.swift */,
 				E5C92209265B213A00411092 /* UIViewController+Extension.swift */,
 				E5C92276265B4F3500411092 /* UIDouble+Extension.swift */,
+				E5C92295265B5DD700411092 /* UITableView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -399,9 +406,27 @@
 		E5C92270265B4B8600411092 /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
-				E5C92271265B4B9C00411092 /* LocationManager.swift */,
+				E5C92289265B56A800411092 /* StateView */,
+				E5C92288265B569E00411092 /* LocationManager */,
 			);
 			path = CustomComponents;
+			sourceTree = "<group>";
+		};
+		E5C92288265B569E00411092 /* LocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				E5C92271265B4B9C00411092 /* LocationManager.swift */,
+			);
+			path = LocationManager;
+			sourceTree = "<group>";
+		};
+		E5C92289265B56A800411092 /* StateView */ = {
+			isa = PBXGroup;
+			children = (
+				E5C9228A265B56B800411092 /* StateView.swift */,
+				E5C9228F265B56C300411092 /* StateView.xib */,
+			);
+			path = StateView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -512,6 +537,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5C92290265B56C300411092 /* StateView.xib in Resources */,
 				E5C9211D265AF49C00411092 /* LaunchScreen.storyboard in Resources */,
 				E5C92200265B1F8400411092 /* FourSquareViewController.xib in Resources */,
 				E5C921F9265B1F5100411092 /* Assets.xcassets in Resources */,
@@ -656,6 +682,7 @@
 				E5C92224265B249A00411092 /* NearbyPlaceCell.swift in Sources */,
 				E5C92166265AF53300411092 /* BaseModel.swift in Sources */,
 				E5C9219B265B0B1400411092 /* ResponseHandler.swift in Sources */,
+				E5C9228B265B56B800411092 /* StateView.swift in Sources */,
 				E5C921BC265B0E8600411092 /* ErrorModel.swift in Sources */,
 				E5C9215C265AF50800411092 /* Storyboarded.swift in Sources */,
 				E5C9223F265B286500411092 /* ExploreModel.swift in Sources */,
@@ -667,6 +694,7 @@
 				E5C92245265B299B00411092 /* FourSquareRouter.swift in Sources */,
 				E5C9225E265B3AF300411092 /* PhotosModel.swift in Sources */,
 				E5C921DA265B14CB00411092 /* URLRequestBuilder.swift in Sources */,
+				E5C92296265B5DD700411092 /* UITableView+Extension.swift in Sources */,
 				E5C92212265B23C200411092 /* FourSquareViewModel.swift in Sources */,
 				E5C92193265B02DE00411092 /* ServerPaths.swift in Sources */,
 				E5C92272265B4B9C00411092 /* LocationManager.swift in Sources */,
