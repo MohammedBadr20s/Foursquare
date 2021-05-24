@@ -8,13 +8,13 @@
 import Foundation
 import Alamofire
 
-
+//MARK:- Response Enum
 enum ResponseEnum {
     case failure(_ error: ApiError?, _ data: Any?)
     case success(_ value: Any?)
 }
 
-
+//MARK:- ApiError Status Codes with message and Title
 enum ApiError: Int {
     case BadRequest = 400
     case ServerError = 500
@@ -49,12 +49,12 @@ enum ApiError: Int {
     }
 }
 
-
+//MARK:- Response Handler
 class ResponseHandler {
     
     static let shared = ResponseHandler()
     
-    
+    //MARK:- Handle Response Data according to Status Code
     func handleResponse<T: BaseModel>(_ response: AFDataResponse<Any>, model: T.Type) -> ResponseEnum {
         guard let code = response.response?.statusCode else {
             return .failure(ApiError.ClientSideError, nil)
@@ -67,7 +67,7 @@ class ResponseHandler {
         }
     }
     
-    
+    //MARK:- Handle Error result
     func handleError(_ res: Any?, code: Int) -> ResponseEnum {
         let error = ApiError(rawValue: code)
         
@@ -78,7 +78,7 @@ class ResponseHandler {
         
         return .failure(error, nil)
     }
-    
+    //MARK:- Handle Response Data
     func handleResponseData<T: BaseModel>(response: ResponseEnum, model: T.Type) -> ResponseEnum {
         switch response {
         case .failure(let error, let data):

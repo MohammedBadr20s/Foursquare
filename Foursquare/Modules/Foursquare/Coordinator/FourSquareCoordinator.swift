@@ -7,10 +7,11 @@
 
 import UIKit
 
-
+//MARK:- FourSquare Coordinator which manages Navigations from and to FourSquare Module
 class FourSquareCoordinator: Coordinator {
     var childCoordinalors: [Coordinator] = []
     let navigationController: UINavigationController
+    
     required init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }

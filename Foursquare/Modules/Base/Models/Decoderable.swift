@@ -11,7 +11,7 @@ protocol Decoderable {
     static func decodeJSON<T: Codable>(_ res: Any, To model: T.Type, format: JSONDecoder.KeyDecodingStrategy) -> Any?
 }
 
-
+//MARK:- Decoding JSON
 extension Decoderable {
     static func decodeJSON<T: Codable>(_ res: Any, To model: T.Type, format: JSONDecoder.KeyDecodingStrategy) -> Any? {
         let decoder = JSONDecoder()

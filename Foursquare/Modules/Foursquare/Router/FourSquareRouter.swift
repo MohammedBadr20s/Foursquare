@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 import RxSwift
 
-
+//MARK:- FourSquare Router Which Builds the request for FourSquare Module
 enum FourSquareRouter: URLRequestBuilder {
     case exploreNearbyPlace(_ lat: Double,_ long: Double,_ radius: Int)
     case getPhotos(_ venueId: String)

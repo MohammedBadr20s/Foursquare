@@ -10,19 +10,22 @@ import RxCocoa
 import RxSwift
 import CoreLocation
 class FourSquareViewController: BaseViewController {
-
+    //MARK:- Outlets
     @IBOutlet weak var tableView: UITableView!
+    
+    //MARK:- Properties
     let viewModel = Injection.container.resolve(FourSquareViewModel.self)!
     var locationManager: LocationManager?
     var isRealTime = false
+    //Get Nearby Places with every update on current location depending on RealmTime State
     var currentLocation: CLLocationCoordinate2D? {
         didSet {
-            
             self.viewModel.getNearbyPlaces(lat: currentLocation?.latitude ?? 0, long: currentLocation?.longitude ?? 0, radius: 1000)
             self.tableView.showStateView(show: true, state: .loading, msg: "Loading...")
 
         }
     }
+    //MARK:- View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,19 +38,9 @@ class FourSquareViewController: BaseViewController {
         self.addRealTimeButton(Selector: #selector(realTimeAction))
         setupTableView()
         self.locationManager = LocationManager(locationManager: CLLocationManager(), coreLocationDelegate: self, viewController: self)
-        self.viewModel.output.nearbyPlaces.bind { (items: [GroupItem]) in
-            
-            if items.count == 0 {
-                self.tableView.showStateView(show: true, state: .noData, msg: "No data found !!")
-            } else {
-                self.tableView.showStateView(show: false)
-            }
-        }.disposed(by: self.viewModel.disposeBag)
-        self.viewModel.failure.bind { (error: ErrorModel) in
-            self.tableView.showStateView(show: true, state: .error, msg: "Something went wrong !! \n\(error.meta?.errorDetail ?? "")")
-        }.disposed(by: self.viewModel.disposeBag)
+        bindingViewModel()
     }
-
+    //MARK:- Realtime Action
     @objc func realTimeAction() {
         if let item =  self.navigationItem.rightBarButtonItem {
             if item.title == "RealTime" {
@@ -62,6 +55,22 @@ class FourSquareViewController: BaseViewController {
         }
     }
     
+    //MARK:- Data binding from ViewModel to View
+    func bindingViewModel() {
+        self.viewModel.output.nearbyPlaces.bind { (items: [GroupItem]) in
+            
+            if items.count == 0 {
+                self.tableView.showStateView(show: true, state: .noData, msg: "No data found !!")
+            } else {
+                self.tableView.showStateView(show: false)
+            }
+        }.disposed(by: self.viewModel.disposeBag)
+        self.viewModel.failure.bind { (error: ErrorModel) in
+            self.tableView.showStateView(show: true, state: .error, msg: "Something went wrong !! \n\(error.meta?.errorDetail ?? "")")
+        }.disposed(by: self.viewModel.disposeBag)
+    }
+    
+    //MARK:- Binding Data to TableView
     func setupTableView() {
         self.tableView.register(NearbyPlaceCell.NearbyPlaceNib(), forCellReuseIdentifier: NearbyPlaceCell.id)
         self.viewModel.output.nearbyPlaces.observe(on: MainScheduler.instance).bind(to: self.tableView.rx.items) { [weak self] (tableView, row, element) -> UITableViewCell in
@@ -76,16 +85,11 @@ class FourSquareViewController: BaseViewController {
         }.disposed(by: self.viewModel.disposeBag)
     }
     
-    
+    //MARK:- Configure NearbyPlaces Cell
     func configureNearbyPlacesCell(tableView: UITableView, indexPath: IndexPath, element: GroupItem) -> NearbyPlaceCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: NearbyPlaceCell.id, for: indexPath) as? NearbyPlaceCell else { return NearbyPlaceCell()}
         cell.config(title: element.venue?.name ?? "", descriptionData: element.venue?.location?.formattedAddress?.joined(separator: " - ") ?? "")
         cell.getPhoto(imageURL: element.venue?.photos?.items?.first?.fullLink)
-//        self.viewModel.getVenuePhoto(venueId: element.venue?.id ?? "") { (photoLink: String?) in
-//            guard let link = photoLink else { return }
-//
-//            
-//        }
         return cell
     }
     

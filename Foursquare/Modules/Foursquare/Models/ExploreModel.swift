@@ -14,7 +14,7 @@ struct ExploreModel: BaseModel, Codable {
     var response: ExploreResponse?
 }
 
-// MARK: - Response
+// MARK: - ExploreResponse
 struct ExploreResponse: Codable {
     var suggestedFilters: SuggestedFilters?
     var headerLocation, headerFullLocation, headerLocationGranularity: String?

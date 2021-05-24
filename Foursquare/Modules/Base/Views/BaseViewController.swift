@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK:- Base View Controller for Common Functions between View Controllers to be set here
 class BaseViewController: UIViewController, Storyboarded {
 
     override func viewDidLoad() {

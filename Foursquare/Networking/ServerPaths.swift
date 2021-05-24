@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+//MARK:- Server Paths
 enum ServerPath: String {
     case baseURL = "https://api.foursquare.com/v2/"
     case getNearbyPlaces = "/explore"

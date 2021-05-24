@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 import RxSwift
 
+//MARK:- URL Request Building Protocol
 protocol URLRequestBuilder: URLRequestConvertible {
     
     var baseURL: String { get }
@@ -34,7 +35,7 @@ protocol URLRequestBuilder: URLRequestConvertible {
     func handleError<T: BaseModel>(apiError: ApiError?, data: Any?, observer: AnyObserver<T>)
 }
 
-
+//MARK:- URLRequestBuilder Common Properties and Functions
 extension URLRequestBuilder {
     
     var mainURL: URL {
@@ -70,7 +71,7 @@ extension URLRequestBuilder {
     func asURLRequest() throws -> URLRequest {
         return try encoding.encode(urlRequest, with: parameters)
     }
-    
+    //MARK:- API Request Function
     func Request<T:BaseModel>(model: T.Type) -> Observable<T> {
         
         return Observable.create { (observer: AnyObserver<T>) -> Disposable in
@@ -91,7 +92,7 @@ extension URLRequestBuilder {
             return Disposables.create()
         }
     }
-    
+    //MARK:- Handle Error comes from Request Function
     func handleError<T: BaseModel>(apiError: ApiError?, data: Any?, observer: AnyObserver<T>) {
         if let apiError = apiError {
             observer.onError(ErrorModel(meta: Meta(code: apiError.rawValue, errorType: apiError.title, errorDetail: apiError.message, requestID: "")))

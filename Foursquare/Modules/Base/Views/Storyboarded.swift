@@ -10,7 +10,7 @@ import UIKit
 protocol Storyboarded {
     static func instantiate() -> Self
 }
-
+//MARK:- To Handle View Controller Initialization from Storyboard with name or directly from Xibs
 extension Storyboarded where Self: UIViewController {
     static func instantiate(StoryboardName name: String) -> Self {
         let id = String(describing: self)

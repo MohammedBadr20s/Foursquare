@@ -9,18 +9,19 @@ import Foundation
 import RxSwift
 import RxRelay
 
-
+//MARK:- FourSquareViewModel
 class FourSquareViewModel: BaseViewModel, ViewModelType {
     
     var input: Input
     var output: Output
-    
+    //MARK:- Subjects
     private let places = BehaviorSubject<[GroupItem]>(value: [])
     private var itemsWithPhotos = [GroupItem]() {
         didSet {
             self.places.onNext(itemsWithPhotos)
         }
     }
+    //MARK:- Input & Output Structs
     struct Input {
     }
     
@@ -36,6 +37,8 @@ class FourSquareViewModel: BaseViewModel, ViewModelType {
         
         super.init()
     }
+    
+    //MARK:- getting Nearby Places to Specific Point (Lat, Long) with Radius
     func getNearbyPlaces(lat: Double, long: Double, radius: Int = 1000) {
         self.itemsWithPhotos.removeAll()
         FourSquareRouter.exploreNearbyPlace(lat, long, radius).Request(model: ExploreModel.self).subscribe { (exploreModel: ExploreModel) in
@@ -64,6 +67,7 @@ class FourSquareViewModel: BaseViewModel, ViewModelType {
         }.disposed(by: self.disposeBag)
     }
     
+    //MARK:- Getting Venue Photo and while making sure that no two elements are emitted in less than dueTime.
     func getVenuePhoto(venueId: String, completion: @escaping (_ photoLink: String?,_ error: ErrorModel?) -> Void) {
         FourSquareRouter.getPhotos(venueId).Request(model: PhotosModel.self).throttle(.seconds(2), scheduler: MainScheduler.instance).subscribe { (photoModel: PhotosModel) in
             let photoLink = (photoModel.response?.photos?.items?.first?.itemPrefix ?? "") + "200x200" + (photoModel.response?.photos?.items?.first?.suffix ?? "")

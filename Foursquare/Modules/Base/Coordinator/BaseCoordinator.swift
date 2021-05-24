@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK:- BaseCoordinator
 class BaseCoordinator: Coordinator {
     var childCoordinalors: [Coordinator] = []
     private var navigationController: UINavigationController
@@ -16,7 +17,7 @@ class BaseCoordinator: Coordinator {
     
     func start(backDelegate: BackDelegate?) {}
     
-    
+    //MARK:- Start Screen
     func navigate(window: UIWindow?) {
         self.navigationController = UINavigationController()
         self.navigationController.isNavigationBarHidden = false

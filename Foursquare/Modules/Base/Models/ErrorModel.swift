@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+//MARK:- Error Model
 struct ErrorModel: BaseModel, Error {
     var meta: Meta?
 }

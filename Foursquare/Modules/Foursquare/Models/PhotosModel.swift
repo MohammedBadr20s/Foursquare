@@ -13,7 +13,7 @@ struct PhotosModel: BaseModel, Codable {
     var response: PhotosResponse?
 }
 
-// MARK: - Response
+// MARK: - PhotosResponse
 struct PhotosResponse: Codable {
     var photos: Photos?
 }

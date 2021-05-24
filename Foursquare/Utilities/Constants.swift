@@ -7,10 +7,10 @@
 
 import Foundation
 
-
+//MARK:- Constants of the app
 enum Constants: String {
-    case clientId = "TLGHZJRXL3HJUMA4TBAWMS5MJDQQJFXUAAOAOHO50GL0HUS3"
-    case client_secret = "C2RWHUJXFIKNRECPXTYS5GSLQJDWJFOXN4GIAWSFCGEIGQYI"
+    case clientId = "24RJTKS3GXWYLJFAJMTMPUAOBFXFGUXSGFQYJHU1EYKIYA4I"
+    case client_secret = "0NVMOZ3RWODVIAVK2CEPEQ4FEKSJS2E50MJ3KODXXEXG3HPI"
     case AppleLanguages
     case googleAPIKey
     case environment
@@ -21,7 +21,7 @@ enum Constants: String {
     }
 }
 
-
+//MARK:- Environment
 enum Environment: String {
     case Default = ""
     case Development = "Dev URL"
@@ -35,7 +35,7 @@ enum Environment: String {
         return Environment(rawValue: UserDefaults.standard.value(forKey: Constants.environment.rawValue) as? String ?? "")
     }
 }
-
+//MARK:- App languages
 enum AppLanguages: String{
     case en, ar
 }

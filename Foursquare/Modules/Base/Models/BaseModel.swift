@@ -7,13 +7,13 @@
 
 import Foundation
 
-
+//MARK:- Base Model Protocol
 protocol BaseModel: Decoderable, Codable {
     func toJSON() -> [String: Any]?
 }
 
 
-
+//MARK:- Converts data to JSON Function
 extension BaseModel {
     func toJSON() -> [String : Any]? {
         let encoder = JSONEncoder()
