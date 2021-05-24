@@ -17,7 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        #if PROD
+            print("Production Environment")
+            Environment.Production.changeTo()
+        #elseif Dev
+            print("Dev Environment")
+            Environment.Development.changeTo()
+        #elseif DEBUG
+            print("Debug Environment")
+            Environment.Development.changeTo()
+        #endif
         guard #available(iOS 13, *) else {
             let nvc = UINavigationController()
             BaseCoordinator(navigationController: nvc).navigate(window: window)

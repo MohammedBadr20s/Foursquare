@@ -38,6 +38,10 @@ protocol URLRequestBuilder: URLRequestConvertible {
 //MARK:- URLRequestBuilder Common Properties and Functions
 extension URLRequestBuilder {
     
+    var baseURL: String {
+        return Environment.current()?.rawValue ?? ServerPath.baseURL.rawValue
+    }
+    
     var mainURL: URL {
         /*Forced Typecast is safe here because your baseURL must be valid or the app will crash
          and navigate to this line of code before even launch

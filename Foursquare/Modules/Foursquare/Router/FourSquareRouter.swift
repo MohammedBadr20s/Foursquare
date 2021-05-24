@@ -14,9 +14,9 @@ enum FourSquareRouter: URLRequestBuilder {
     case exploreNearbyPlace(_ lat: Double,_ long: Double,_ radius: Int)
     case getPhotos(_ venueId: String)
     
-    var baseURL: String {
-        return ServerPath.baseURL.rawValue
-    }
+//    var baseURL: String {
+//        return Environment.current()?.rawValue ?? ServerPath.baseURL.rawValue
+//    }
     
     var parameters: Parameters? {
         switch self {

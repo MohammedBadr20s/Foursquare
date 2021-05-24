@@ -9,8 +9,8 @@ import Foundation
 
 //MARK:- Constants of the app
 enum Constants: String {
-    case clientId = "24RJTKS3GXWYLJFAJMTMPUAOBFXFGUXSGFQYJHU1EYKIYA4I"
-    case client_secret = "0NVMOZ3RWODVIAVK2CEPEQ4FEKSJS2E50MJ3KODXXEXG3HPI"
+    case clientId = "LEGVCILGTFQSIAMCB4ZKB2MEZKUILFS3TS20O2SEHMHKGAC3"
+    case client_secret = "ND4O2AR14U5MCIHOEZ2K43X34LTIFGSMULY0DDTRK4WXIXZD"
     case AppleLanguages
     case googleAPIKey
     case environment
@@ -24,15 +24,15 @@ enum Constants: String {
 //MARK:- Environment
 enum Environment: String {
     case Default = ""
-    case Development = "Dev URL"
-    case Production = "Prod URL"
+    case Development = "https://api.foursquare.com/v2//"
+    case Production = "https://api.foursquare.com/v2/"
     
     func changeTo() {
         UserDefaults.standard.setValue(self.rawValue, forKey: Constants.environment.rawValue)
         UserDefaults.standard.synchronize()
     }
-    func current() -> Environment? {
-        return Environment(rawValue: UserDefaults.standard.value(forKey: Constants.environment.rawValue) as? String ?? "")
+    static func current() -> Environment? {
+        return Environment(rawValue: UserDefaults.standard.value(forKey: Constants.environment.rawValue) as? String ?? Environment.Production.rawValue)
     }
 }
 //MARK:- App languages
