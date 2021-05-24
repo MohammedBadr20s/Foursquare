@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             BaseCoordinator(navigationController: nvc).navigate(window: window)
             return true
         }
+        Injection.register()
         IQKeyboardManager.shared.enable = true
         return true
     }

@@ -16,6 +16,10 @@ target 'Foursquare' do
   target 'FoursquareTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'RxSwift', '6.2.0'
+    pod 'RxCocoa', '6.2.0'
+    pod 'RxBlocking', '6.2.0'
+    pod 'RxTest', '6.2.0'
   end
 
   target 'FoursquareUITests' do

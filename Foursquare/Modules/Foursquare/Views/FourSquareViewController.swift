@@ -12,11 +12,12 @@ import CoreLocation
 class FourSquareViewController: BaseViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    let viewModel = FourSquareViewModel()
+    let viewModel = Injection.container.resolve(FourSquareViewModel.self)!
     var locationManager: LocationManager?
     var isRealTime = false
     var currentLocation: CLLocationCoordinate2D? {
         didSet {
+            
             self.viewModel.getNearbyPlaces(lat: currentLocation?.latitude ?? 0, long: currentLocation?.longitude ?? 0, radius: 1000)
             self.tableView.showStateView(show: true, state: .loading, msg: "Loading...")
 
