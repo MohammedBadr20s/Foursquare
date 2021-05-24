@@ -117,6 +117,7 @@ extension FourSquareViewController: CLLocationManagerDelegate {
             let lastLocation = CLLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
             let currentLocationUpdate = CLLocation(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
             let distanceInMeters = Double(currentLocationUpdate.distance(from: lastLocation)).round(places: 2)
+            print("Current Distance between lastUpdate &  CurrentLocation = \(distanceInMeters)")
             if distanceInMeters > 500 {
                 self.currentLocation = location.coordinate
             }

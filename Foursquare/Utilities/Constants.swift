@@ -9,8 +9,8 @@ import Foundation
 
 
 enum Constants: String {
-    case clientId = "WHAM53UPMHAQ1XKKDR4HGHZJWHODYN5HX4NKP4QDJLSWV3NH"
-    case client_secret = "ZYGKMVBUWLGO5WWWUKKD0Y0CX2TQ13MUEETBLPEI1IIVFOAJ"
+    case clientId = "UC0JZRIQHAC0BJWUGQZRAVZ4WBWR44VZF43GBNIO34BMBGLZ"
+    case client_secret = "DF0DSDSKIL22E1D0MWU3J5TFTH1UAM3JMZJOBNS5ULBZR511"
     case AppleLanguages
     case googleAPIKey
     case environment
@@ -32,7 +32,7 @@ enum Environment: String {
         UserDefaults.standard.synchronize()
     }
     func current() -> Environment? {
-        return Environment(rawValue: UserDefaults.standard.value(forKey: Constants.environment.rawValue) as! String)
+        return Environment(rawValue: UserDefaults.standard.value(forKey: Constants.environment.rawValue) as? String ?? "")
     }
 }
 

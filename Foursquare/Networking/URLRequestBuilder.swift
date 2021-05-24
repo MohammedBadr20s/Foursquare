@@ -38,10 +38,15 @@ protocol URLRequestBuilder: URLRequestConvertible {
 extension URLRequestBuilder {
     
     var mainURL: URL {
+        /*Forced Typecast is safe here because your baseURL must be valid or the app will crash
+         and navigate to this line of code before even launch
+         */
         return URL(string: baseURL)!
     }
     
     var requestURL: URL {
+        /*Forced Typecast is safe here because if mainURL is valid requestURL is going to be valid even if path is empty
+         */
         let urlStr = mainURL.absoluteString + path
         return URL(string: urlStr)!
     }
