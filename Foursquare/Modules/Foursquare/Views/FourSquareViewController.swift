@@ -16,7 +16,7 @@ class FourSquareViewController: BaseViewController {
     //MARK:- Properties
     let viewModel = Injection.container.resolve(FourSquareViewModel.self)!
     var locationManager: LocationManager?
-    var isRealTime = false
+    var isRealTime = true
     //Get Nearby Places with every update on current location depending on RealmTime State
     var currentLocation: CLLocationCoordinate2D? {
         didSet {
@@ -45,12 +45,12 @@ class FourSquareViewController: BaseViewController {
         if let item =  self.navigationItem.rightBarButtonItem {
             if item.title == "RealTime" {
                 item.title = "Single Update"
-                isRealTime = true
-                self.locationManager?.manager.startUpdatingLocation()
-            } else {
-                item.title = "RealTime"
                 isRealTime = false
                 self.locationManager?.manager.requestLocation()
+            } else {
+                item.title = "RealTime"
+                isRealTime = true
+                self.locationManager?.manager.startUpdatingLocation()
             }
         }
     }
