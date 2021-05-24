@@ -9,8 +9,8 @@ import Foundation
 
 //MARK:- Constants of the app
 enum Constants: String {
-    case clientId = "LEGVCILGTFQSIAMCB4ZKB2MEZKUILFS3TS20O2SEHMHKGAC3"
-    case client_secret = "ND4O2AR14U5MCIHOEZ2K43X34LTIFGSMULY0DDTRK4WXIXZD"
+    case clientId = "5V4Y3J0E1XPRB2LIUIEIBJLS2Y2KCOYZNH55BTUQAINXS1K5"
+    case client_secret = "T2BEFOFLNZ3LY55BNIQOPN44KZ41HYNTRA3PES34XWM33A3R"
     case AppleLanguages
     case googleAPIKey
     case environment

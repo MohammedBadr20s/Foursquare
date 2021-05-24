@@ -35,7 +35,7 @@ class LocationManager {
             case .authorizedAlways, .authorizedWhenInUse:
                 print("Full Access")
                 manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-                manager.requestLocation()
+                manager.startUpdatingLocation()
                 completion?(true)
             @unknown default:
                 break
