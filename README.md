@@ -22,7 +22,8 @@ build and run
 1- Open app and it will ask you for location permission
 2- you have to allow for the use of Location Services
 3- App will load the current nearby places to your current location the first time only
-4- If you want to get real time updates of your nearby places every 500 Meter Press on
+4- Real time updates of your nearby places every 500 Meter is the default mode
+4- If you want to get one time update of your current nearby places in radius of 500 Meter Press on
  Real Time Button at the top right of the screen
 ```
 ## Summary
