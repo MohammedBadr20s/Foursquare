@@ -99,7 +99,8 @@ extension URLRequestBuilder {
     //MARK:- Handle Error comes from Request Function
     func handleError<T: BaseModel>(apiError: ApiError?, data: Any?, observer: AnyObserver<T>) {
         if let apiError = apiError {
-            observer.onError(ErrorModel(meta: Meta(code: apiError.rawValue, errorType: apiError.title, errorDetail: apiError.message, requestID: "")))
+            let error = ErrorModel(meta: Meta(code: apiError.rawValue, errorType: apiError.title, errorDetail: apiError.message, requestID: ""))
+            observer.onError(error)
         } else if let error = data as? ErrorModel {
             observer.onError(error)
         } else if let errorArr = data as? [ErrorModel] {

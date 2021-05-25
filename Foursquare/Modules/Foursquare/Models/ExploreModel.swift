@@ -19,10 +19,14 @@ struct ExploreResponse: Codable {
     var suggestedFilters: SuggestedFilters?
     var headerLocation, headerFullLocation, headerLocationGranularity: String?
     var totalResults: Int?
+    var warning: selectedItemsWarning?
     var suggestedBounds: SuggestedBounds?
     var groups: [Group]?
 }
-
+// MARK: - selectedItemsObjWarning
+struct selectedItemsWarning: Codable {
+    var text: String?
+}
 // MARK: - Group
 struct Group: Codable {
     var type, name: String?

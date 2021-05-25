@@ -13,9 +13,9 @@ extension UITableView {
         if show {
             let stateView = StateView(frame: CGRect(x: 0, y: self.center.y, width: self.frame.width, height: self.frame.height))
             stateView.config(status: state ?? .loading, msg: msg)
-            self.tableFooterView = stateView
+            self.tableHeaderView = stateView
         } else {
-            self.tableFooterView = nil
+            self.tableHeaderView = nil
         }
     }
 }

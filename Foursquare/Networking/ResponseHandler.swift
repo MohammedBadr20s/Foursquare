@@ -17,6 +17,7 @@ enum ResponseEnum {
 //MARK:- ApiError Status Codes with message and Title
 enum ApiError: Int {
     case BadRequest = 400
+    case Forbidden = 403
     case ServerError = 500
     case ClientSideError = 0
     case unprocessableEntity = 422
@@ -25,6 +26,8 @@ enum ApiError: Int {
         switch self {
         case .BadRequest:
             return "Bad Request"
+        case .Forbidden:
+            return "Forbidden"
         case .ServerError:
             return "Internal Server Error"
         case.ClientSideError:
@@ -39,6 +42,8 @@ enum ApiError: Int {
         switch self {
         case .BadRequest:
             return "Bad Request"
+        case .Forbidden:
+            return "Forbidden"
         case .ServerError:
             return "Internal Server Error"
         case.ClientSideError:
